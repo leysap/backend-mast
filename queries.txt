@@ -1,0 +1,43 @@
+//CREAMOS LA BASE DE DATOS API_RESTAURANTES
+CREATE DATABASE api_restaurantes;
+
+// CREAMOS LA TABLA USUARIOS
+CREATE TABLE api_restaurantes.users (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(48) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user' NOT NULL,
+    username VARCHAR(30) NOT NULL UNIQUE
+);
+
+
+// CREAMOS LA TABLA RESTAURANTES
+CREATE TABLE api_restaurantes.restaurants (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    user_id INT,
+    address VARCHAR(100),
+    phone VARCHAR(20),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+//CREAMOS EL USUARIO
+INSERT INTO users (name, email, password, role) 
+VALUES ('John', 'john@hotmail.com', 'hashed_password', 'user');
+
+INSERT INTO users (name, email, password, role) 
+VALUES ('Sara', 'sara@gmail.com', 'sara_password', 'admin');
+
+
+
+
+//CREAMOS EL RESTAURANTE
+INSERT INTO restaurants (name, user_id, address, phone) 
+VALUES ('Restaurante A', 1, '123 Calle Falsa', '123456789');
+
+INSERT INTO restaurants (name, user_id, address, phone) 
+VALUES ('Restaurante B', 2, '456 Otra Calle', '246810112');
+
