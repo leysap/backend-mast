@@ -5,7 +5,7 @@ const {body, validationResult}= require('express-validator')
 const dayjs= require('dayjs')
 const jwt= require('jsonwebtoken')
 const { getAll, registro, getByEmail, getById , editUser, deleteUser} = require('../../models/usuarios');
-const {checkToken, log} = require("../middlewares")
+const {checkToken} = require("../middlewares")
 
 function createToken(user) {
 
@@ -20,7 +20,7 @@ function createToken(user) {
 // RUTA api/usuarios
 
 //TRAE TODOS LOS USUARIOS REGISTRADOS
-router.get('/',log, (req, res) => {
+router.get('/', (req, res) => {
     getAll()
         .then(rows => res.json(rows))
         .catch(error => res.json({ error: error.message }));

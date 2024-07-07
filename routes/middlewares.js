@@ -1,25 +1,6 @@
 const jwt = require('jsonwebtoken');
 const dayjs= require('dayjs')
 const { getById } = require('../models/usuarios');
-const fs= require('fs')
-
-const log = (req, res, next) => {
-    const text = `${dayjs().format()}|${req.method}|${req.url}|${req.ip}\n`;
-    const logFilePath = path.join(__dirname, 'logs', 'logfile.txt');
-    
-    // Asegurarse de que la carpeta 'logs' exista
-    if (!fs.existsSync(path.dirname(logFilePath))) {
-        fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
-    }
-
-    fs.appendFile(logFilePath, text, (err) => {
-        if (err) {
-            console.error('Error writing to log file', err);
-        }
-    });
-    
-    next();
-};
 
 const checkToken = async (req, res, next) => {
     //Comprueba si existe el token 
