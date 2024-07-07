@@ -1,0 +1,79 @@
+// api/usuarios
+### Devuelve todos los usuarios registrados
+GET http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+### Crea un nuevo usuario
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "name": "Leysa",
+    "email": "ley@gmail.com",
+    "password": "ley123456",
+    "role": "admin",
+    "username":"ley_pozo"
+}
+
+### Devuelve un usuario en concreto con su id
+GET http://localhost:3000/api/usuarios/1
+Content-Type: application/json
+
+### AQUI COMPROBAMOS SI ESTOY LOGUEADA
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "ley@gmail.com",
+    "password": "ley123456"
+}
+
+### Actualiza los datos de un usuario ya registrado
+PUT http://localhost:3000/api/usuarios/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxLCJleHBpcmVkQXQiOjE3MjAzODQyMDQsImNyZWF0ZWRBdCI6MTcyMDM4MDYwNCwiaWF0IjoxNzIwMzgwNjA0fQ.E_LA3U7iqYfcSi0o8X4nSbVzgFfmXRXsLYcomTD0mK8
+Content-Type: application/json
+
+{
+    "name":"Leysa Pozo",
+    "role":"admin",
+    "email":"ley_pozo@gmail.com",
+    "username":"leyp"
+}
+
+### Elimina el usuario, el mismo que se logueó
+DELETE http://localhost:3000/api/usuarios/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxLCJleHBpcmVkQXQiOjE3MjAzODQyMDQsImNyZWF0ZWRBdCI6MTcyMDM4MDYwNCwiaWF0IjoxNzIwMzgwNjA0fQ.E_LA3U7iqYfcSi0o8X4nSbVzgFfmXRXsLYcomTD0mK8
+
+
+// API/RESTAURANTES
+// Me devuelve todos los restaurantes creados
+GET http://localhost:3000/api/restaurantes
+Content-Type: application/json
+
+### Crea un nuevo restaurante, solo usuarios registrados
+POST http://localhost:3000/api/restaurantes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxLCJleHBpcmVkQXQiOjE3MjAzODQyMDQsImNyZWF0ZWRBdCI6MTcyMDM4MDYwNCwiaWF0IjoxNzIwMzgwNjA0fQ.E_LA3U7iqYfcSi0o8X4nSbVzgFfmXRXsLYcomTD0mK8
+Content-Type: application/json
+
+{
+    "name":"El comedor",
+    "user_id": 20,
+    "address":"calle xxxx",
+    "phone":"123456789"
+}
+
+### Actualiza la información del restaurante pero únicamente el usuario que ha creado el registro podrá actualizarlo.
+PUT http://localhost:3000/api/restaurantes/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJleHBpcmVkQXQiOjE3MjAzNzY4ODAsImNyZWF0ZWRBdCI6MTcyMDM3MzI4MCwiaWF0IjoxNzIwMzczMjgwfQ.YTfRVvRhUK5-C6H-WsKhm4XG-aIC6GQEhiXK9dLVDNc
+Content-Type: application/json
+
+{
+    "name":"LA COMANDA",
+    "address":"calle TRIPLE X",
+    "phone":"258963147"
+}
+
+### Elimina un registro de restaurante. Solo usuarios con el rol “ADMIN” podrán eliminar un registro.
+DELETE http://localhost:3000/api/restaurantes/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJleHBpcmVkQXQiOjE3MjAzODQ2MDIsImNyZWF0ZWRBdCI6MTcyMDM4MTAwMiwiaWF0IjoxNzIwMzgxMDAyfQ.da2dJ9WqvLA4UyRgxdNONmefzmW8P0Z_UZJQs8qPOgQ
+
